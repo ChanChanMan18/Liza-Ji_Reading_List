@@ -1,11 +1,9 @@
-# Community Detection {#cross}
+# Community Detection 
 
-CARLYLE THIS ONE'S FOR YOU BRO
-
-## Chapters and sub-chapters
+## What is it? {-}
 
 
 
-## Captioned figures and tables
+## The Basics {-}
 
 
