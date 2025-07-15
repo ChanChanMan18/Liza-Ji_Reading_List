@@ -237,6 +237,7 @@ div.csl-indent {
 <h1>Latent Space Modeling<a href="latent-space-modeling.html#latent-space-modeling" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="what-is-it" class="section level2 unnumbered hasAnchor">
 <h2>What is it?<a href="latent-space-modeling.html#what-is-it" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the context of statistical network analysis, latent space modeling refers to the assignment of each node in the network to a latent position vector. Then, the nodes of the network connect with some probability dependent on the positions of the latent position vectors. Each of the following are latent space network models, roughly arranged from least complex to most complex. As a result, we encourage you to read the papers presented <em>in order</em>.</p>
 </div>
 <div id="the-basics" class="section level2 unnumbered hasAnchor">
 <h2>The Basics<a href="latent-space-modeling.html#the-basics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -270,6 +271,10 @@ div.csl-indent {
 </div>
 <div id="macdonald-et-al-multiness" class="section level3 unnumbered hasAnchor">
 <h3>MacDonald et al, MultiNeSS<a href="latent-space-modeling.html#macdonald-et-al-multiness" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Peter MacDonald was another of Liza’s students. For one chapter of his dissertation (in fact, his first project for the group), he created the <strong>Multi</strong>ple <strong>Ne</strong>tworks with <strong>S</strong>hared <strong>S</strong>tructure model. As in the case with COSIE, we imagine that we have multiple graphs (a sort of layering of graphs, wherein each layer is one graph) on a common set of <span class="math inline">\(n\)</span> nodes. Let the graphs be labeled by <span class="math inline">\(k = 1, \dots, K\)</span>. As in the previous section, each of the nodes of the graph are associated with a latent position vector. That means that each layer (each graph in the set of graphs) is associated with its <em>own</em> latent matrix that we denote by <span class="math inline">\(X_k\)</span>. The key idea is that the latent position matrix for each layer of the multiplex is divided into two pieces:</p>
+<p><span class="math display">\[X_k = \begin{bmatrix} x_{1k}^{\top} \\ \vdots \\ x_{nk}^{\top} \end{bmatrix} = \begin{bmatrix} V &amp; U_k \end{bmatrix}\]</span></p>
+<p>That is, <strong>all</strong> of the corresponding nodes in the multiplex have latent vectors with some common component (captured by <span class="math inline">\(V\)</span>) and some component individual to that layer (captured by <span class="math inline">\(U_k\)</span>). We can then separate the information that is common to all layers from the information that is unique to individual layers. This paper is very important and very dense; it should be read multiple times!</p>
+<p>The paper containing these ideas is <em>Latent space models for multiplex networks with shared structure</em> <span class="citation">MacDonald, Levina, and Zhu (<a href="#ref-macdonald2021latentspacemodelsmultiplex">2021</a>)</span> <a href="https://arxiv.org/pdf/2012.14409">here</a>.</p>
 
 </div>
 </div>
@@ -284,6 +289,9 @@ Hoff, Peter D, Adrian E Raftery, and Mark S Handcock. 2002. <span>“Latent Spac
 </div>
 <div id="ref-holland1983stochastic" class="csl-entry">
 Holland, Paul W, Kathryn Blackmond Laskey, and Samuel Leinhardt. 1983. <span>“Stochastic Blockmodels: First Steps.”</span> <em>Social Networks</em> 5 (2): 109–37.
+</div>
+<div id="ref-macdonald2021latentspacemodelsmultiplex" class="csl-entry">
+MacDonald, Peter W., Elizaveta Levina, and Ji Zhu. 2021. <span>“Latent Space Models for Multiplex Networks with Shared Structure.”</span> <a href="https://arxiv.org/abs/2012.14409">https://arxiv.org/abs/2012.14409</a>.
 </div>
 </div>
             </section>

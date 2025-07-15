@@ -8,7 +8,7 @@ output:
 
 ## What is it? {-}
 
-
+In the context of statistical network analysis, latent space modeling refers to the assignment of each node in the network to a latent position vector. Then, the nodes of the network connect with some probability dependent on the positions of the latent position vectors. Each of the following are latent space network models, roughly arranged from least complex to most complex. As a result, we encourage you to read the papers presented *in order*.
 
 ## The Basics {-}
 
@@ -57,9 +57,11 @@ In this case, we write $(\mathbf{A}, \mathbf{X}) \sim \text{RDPG}(F, n)$.
 
 ### MacDonald et al, MultiNeSS {-}
 
+Peter MacDonald was another of Liza's students. For one chapter of his dissertation (in fact, his first project for the group), he created the **Multi**ple **Ne**tworks with **S**hared **S**tructure model. As in the case with COSIE, we imagine that we have multiple graphs (a sort of layering of graphs, wherein each layer is one graph) on a common set of $n$ nodes. Let the graphs be labeled by $k = 1, \dots, K$. As in the previous section, each of the nodes of the graph are associated with a latent position vector. That means that each layer (each graph in the set of graphs) is associated with its *own* latent matrix that we denote by $X_k$. The key idea is that the latent position matrix for each layer of the multiplex is divided into two pieces:
 
+$$X_k = \begin{bmatrix} x_{1k}^{\top} \\ \vdots \\ x_{nk}^{\top} \end{bmatrix} = \begin{bmatrix} V & U_k \end{bmatrix}$$
 
+That is, **all** of the corresponding nodes in the multiplex have latent vectors with some common component (captured by $V$) and some component individual to that layer (captured by $U_k$). We can then separate the information that is common to all layers from the information that is unique to individual layers. This paper is very important and very dense; it should be read multiple times!
 
-
-
+The paper containing these ideas is *Latent space models for multiplex networks with shared structure* @macdonald2021latentspacemodelsmultiplex <a href="https://arxiv.org/pdf/2012.14409">here</a>.
 
