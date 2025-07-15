@@ -8,7 +8,7 @@ output:
 
 ## What is it? {-}
 
-Something about latent space modeling here
+
 
 ## The Basics {-}
 
@@ -36,10 +36,13 @@ The very basics of the stochastic block model are presented in
 
 ### Random Dot Product Graphs (Athreya et al) {-}
 
-Another foundational paper is *Statistical Inference on Random Dot Product Graphs: a Survey* @athreya2017statisticalinferencerandomdot <a href="https://jmlr.csail.mit.edu/papers/volume18/17-448/17-448.pdf">here</a>
+Another foundational paper is *Statistical Inference on Random Dot Product Graphs: a Survey* @athreya2017statisticalinferencerandomdot <a href="https://jmlr.csail.mit.edu/papers/volume18/17-448/17-448.pdf">here</a>.
 
+As in Hoff, in the Random Dot Product Graph (RDPG), the latent position vectors are drawn from some common distribution $F$. In particular, we might have $\mathbf{x}_1, \dots, \mathbf{x}_n \overset{\text{iid}}{\sim} F$. That is, we have a graph with $n$ nodes, each of which is associated with a position in the latent space. We then collect these rows and put them into a matrix $\mathbf{X} = [\mathbf{x}_1, \mathbf{x}_2, \dots, \mathbf{x}_n]^{\top} \in \mathbb{R}^{n\times d}$. Then the adjacency matrix $\mathbf{A}$ is modeled by
 
+$$\text{Prob}[\mathbf{A} | \mathbf{X}] = \prod_{i < j} (\mathbf{x}_i^{\top}\mathbf{x}_j)^{A_{ij}}(1 - \mathbf{x}_i^{\top}\mathbf{x}_j)^{1 - A_{ij}}$$
 
+In this case, we write $(\mathbf{A}, \mathbf{X}) \sim \text{RDPG}(F, n)$.
 
 
 ## Latent Space Modeling with Multiplex Networks
