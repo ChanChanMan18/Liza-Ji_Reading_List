@@ -257,7 +257,7 @@ div.csl-indent {
 </div>
 <div id="random-dot-product-graphs-athreya-et-al" class="section level3 unnumbered hasAnchor">
 <h3>Random Dot Product Graphs (Athreya et al)<a href="latent-space-modeling.html#random-dot-product-graphs-athreya-et-al" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Another foundational paper is <em>Statistical Inference on Random Dot Product Graphs: a Survey</em> <span class="citation">(<a href="#ref-athreya2017statisticalinferencerandomdot"><strong>athreya2017statisticalinferencerandomdot?</strong></a>)</span> <a href="https://jmlr.csail.mit.edu/papers/volume18/17-448/17-448.pdf">here</a>.</p>
+<p>Another foundational paper is <em>Statistical Inference on Random Dot Product Graphs: a Survey</em> <span class="citation">Athreya et al. (<a href="#ref-athreya2017statisticalinferencerandomdot">2017</a>)</span> <a href="https://jmlr.csail.mit.edu/papers/volume18/17-448/17-448.pdf">here</a>.</p>
 <p>As in Hoff, in the Random Dot Product Graph (RDPG), the latent position vectors are drawn from some common distribution <span class="math inline">\(F\)</span>. In particular, we might have <span class="math inline">\(\mathbf{x}_1, \dots, \mathbf{x}_n \overset{\text{iid}}{\sim} F\)</span>. That is, we have a graph with <span class="math inline">\(n\)</span> nodes, each of which is associated with a position in the latent space. We then collect these rows and put them into a matrix <span class="math inline">\(\mathbf{X} = [\mathbf{x}_1, \mathbf{x}_2, \dots, \mathbf{x}_n]^{\top} \in \mathbb{R}^{n\times d}\)</span>. Then the adjacency matrix <span class="math inline">\(\mathbf{A}\)</span> is modeled by</p>
 <p><span class="math display">\[\text{Prob}[\mathbf{A} | \mathbf{X}] = \prod_{i &lt; j} (\mathbf{x}_i^{\top}\mathbf{x}_j)^{A_{ij}}(1 - \mathbf{x}_i^{\top}\mathbf{x}_j)^{1 - A_{ij}}\]</span></p>
 <p>In this case, we write <span class="math inline">\((\mathbf{A}, \mathbf{X}) \sim \text{RDPG}(F, n)\)</span>.</p>
@@ -279,6 +279,9 @@ div.csl-indent {
 </div>
 <h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-athreya2017statisticalinferencerandomdot" class="csl-entry">
+Athreya, Avanti, Donniell E. Fishkind, Keith Levin, Vince Lyzinski, Youngser Park, Yichen Qin, Daniel L. Sussman, Minh Tang, Joshua T. Vogelstein, and Carey E. Priebe. 2017. <span>“Statistical Inference on Random Dot Product Graphs: A Survey.”</span> <a href="https://arxiv.org/abs/1709.05454">https://arxiv.org/abs/1709.05454</a>.
+</div>
 <div id="ref-Hoff01122002" class="csl-entry">
 Hoff, Peter D, Adrian E Raftery, and Mark S Handcock. 2002. <span>“Latent Space Approaches to Social Network Analysis.”</span> <em>Journal of the American Statistical Association</em> 97 (460): 1090–98. <a href="https://doi.org/10.1198/016214502388618906">https://doi.org/10.1198/016214502388618906</a>.
 </div>
