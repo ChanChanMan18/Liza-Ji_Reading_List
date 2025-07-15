@@ -16,14 +16,33 @@ Something about latent space modeling here
 
 You should begin by reading the seminal work *Latent Space Approaches to Social Network Analysis* @Hoff01122002 <a href="https://www.stat.cmu.edu/~brian/905-2009/all-papers/hoff-raftery-handcock-2002-jasa.pdf">here</a>.
 
-This paper views models networks as the ties (edges) between individuals (nodes). In particular, the paper presents a model wherein the probability of a tie between individuals depends on the positions of individuals in some unobserved "social space". This social space corresponds to the latent space described above. In particular, the paper presents a distance model and a projection model based on these principles and shows how to fit these models using <a href="https://en.wikipedia.org/wiki/Orthogonal_Procrustes_problem">Procrustes analysis</a> and Markov Chain Monte Carlo (don't worry too much about this last part, just try to understand as many details as possible).
+This paper views models networks as the ties (edges) between individuals (nodes). In particular, the paper presents a model wherein the probability of a tie between individuals depends on the positions of individuals in some unobserved "social space". This social space corresponds to the latent space described above. In particular, the paper presents the distance model 
+
+$$\eta_{ij} = \text{log odds}(y_{ij} = 1 | z_i, z_j, x_{ij}, \alpha, \beta) = \alpha + \beta'x_{ij} - |z_i - z_j| $$
+
+and a projection model 
+
+$$\eta_{ij} = \text{log odds}(y_{ij} = 1 | z_i, z_j, x_{ij}, \alpha, \beta) = \alpha + \beta' x_{ij} + \frac{z_i' z_j}{|z_j|},$$
+
+where the $x_{ij}$ correspond to covariates and the $z_i$ correspond to the positions of the nodes in the latent space.
+
+These models are then fit using <a href="https://en.wikipedia.org/wiki/Orthogonal_Procrustes_problem">Procrustes analysis</a> and Markov Chain Monte Carlo (don't worry too much about this last part, just try to understand as many details as possible).
 
 
-### Some other paper here
+### The Stochastic Block Model (Holland et al) {-}
+
+The very basics of the stochastic block model are presented in 
+
+
+### Random Dot Product Graphs (Athreya et al) {-}
+
+Another foundational paper is *Statistical Inference on Random Dot Product Graphs: a Survey* @athreya2017statisticalinferencerandomdot <a href="https://jmlr.csail.mit.edu/papers/volume18/17-448/17-448.pdf">here</a>
 
 
 
-## Next Steps
+
+
+## Latent Space Modeling with Multiplex Networks
 
 ### Arroyo et al, COSIE
 
