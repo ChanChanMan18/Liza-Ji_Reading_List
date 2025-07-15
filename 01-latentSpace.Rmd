@@ -1,0 +1,44 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# Latent Space Modeling
+
+## What is it? {-}
+
+Something about latent space modeling here
+
+## The Basics {-}
+
+### Hoff et al
+
+You should begin by reading the seminal work *Latent Space Approaches to Social Network Analysis* @Hoff01122002 <a href="https://www.stat.cmu.edu/~brian/905-2009/all-papers/hoff-raftery-handcock-2002-jasa.pdf">here</a>.
+
+This paper views models networks as the ties (edges) between individuals (nodes). In particular, the paper presents a model wherein the probability of a tie between individuals depends on the positions of individuals in some unobserved "social space". This social space corresponds to the latent space described above. In particular, the paper presents a distance model and a projection model based on these principles and shows how to fit these models using <a href="https://en.wikipedia.org/wiki/Orthogonal_Procrustes_problem">Procrustes analysis</a> and Markov Chain Monte Carlo (don't worry too much about this last part, just try to understand as many details as possible).
+
+
+### Some other paper here
+
+
+
+## Next Steps
+
+### Arroyo et al, COSIE
+
+
+
+
+### MacDonald et al, MultiNeSS
+
+
+
+
+##
+
+
+
+
+
+
