@@ -4,7 +4,7 @@ output:
   html_document: default
 ---
 
-# Latent Space Modeling
+# Latent Space Modeling {-}
 
 ## What is it? {-}
 
@@ -12,7 +12,7 @@ output:
 
 ## The Basics {-}
 
-### Hoff et al
+### Hoff et al {-}
 
 You should begin by reading the seminal work *Latent Space Approaches to Social Network Analysis* @Hoff01122002 <a href="https://www.stat.cmu.edu/~brian/905-2009/all-papers/hoff-raftery-handcock-2002-jasa.pdf">here</a>.
 
@@ -31,7 +31,10 @@ These models are then fit using <a href="https://en.wikipedia.org/wiki/Orthogona
 
 ### The Stochastic Block Model (Holland et al) {-}
 
-The very basics of the stochastic block model are presented in 
+Another foundational notion is the **Stochastic Block Model**. The first paper on the subject is *Stochastic Blockmodels: First Steps* @holland1983stochastic <a href="https://www.stat.cmu.edu/~brian/780/bibliography/04%20Blockmodels/Holland%20-%201983%20-%20Stochastic%20blockmodels,%20first%20steps.pdf">here</a>.
+
+The fundamental notion of the stochastic block model is very simple. You begin with a graph with $n$ vertices. Partition these vertices into $r$ communities (we might call these $C_1, \dots, C_r$). Then, for any two vertices $u\in C_i$ and $v\in C_j$, the two are connected by an edge with probability $P_{ij}$. Notice that the probability of connection is dependent *only* on the community assignment. Doing this for all vertices, we can build a symmetric $r\times r$ matrix $P$ of edge probabilities. When $P_{ij} = p$ for all $i, j$, then the result is the famous <a href = "https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93R%C3%A9nyi_model">Erdos-Renyi model</a>.
+
 
 
 ### Random Dot Product Graphs (Athreya et al) {-}
@@ -45,19 +48,15 @@ $$\text{Prob}[\mathbf{A} | \mathbf{X}] = \prod_{i < j} (\mathbf{x}_i^{\top}\math
 In this case, we write $(\mathbf{A}, \mathbf{X}) \sim \text{RDPG}(F, n)$.
 
 
-## Latent Space Modeling with Multiplex Networks
+## Latent Space Modeling with Multiplex Networks {-}
 
-### Arroyo et al, COSIE
-
-
-
-
-### MacDonald et al, MultiNeSS
+### Arroyo et al, COSIE {-}
 
 
 
 
-##
+### MacDonald et al, MultiNeSS {-}
+
 
 
 
