@@ -15,6 +15,16 @@ github-repo: "rstudio/bookdown-demo"
 documentclass: book
 ---
 
+```{r echo=FALSE, warning=FALSE}
+library(readxl)
+library(readr)
+library(dplyr)
+library(stringr)
+library(purrr)
+library(here) 
+library(jsonlite)
+```
+
 # Welcome! {-}
 
 ``` {r out.width="80%", echo=FALSE, fig.align="center"}

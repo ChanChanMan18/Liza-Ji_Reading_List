@@ -2,13 +2,46 @@ p.caption {
   color: #777;
   margin-top: 10px;
 }
+
 p code {
   white-space: inherit;
 }
+
 pre {
   word-break: normal;
   word-wrap: normal;
 }
+
 pre code {
   white-space: inherit;
+}
+
+.search-box {
+  position: relative;             
+  flex: 1 1 240px;                
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.65rem 3rem 0.65rem 1.15rem;   
+  border: 1px solid #ccc;
+  border-radius: 9999px;          
+  font-size: 1.1rem;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #3182ce;         
+  box-shadow: 0 0 0 3px rgba(49,130,206,.20);
+}
+
+.search-icon {
+  position: absolute;
+  right: 1.15rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+  color: #999;
+  pointer-events: none;           
 }

@@ -4,4 +4,130 @@
 
 In this section, the group has amassed a database of papers that you can search by topic, title, and so on.
 
-<embed src="https://docs.google.com/spreadsheets/d/1DYynE1zpp9CFRdecJ0QlDxr2tZ8nylmopeWltoxYz4o/edit?gid=0#gid=0" style="width:1500px; height: 750px;">
+```{r readInDataset, echo=FALSE}
+bib_tbl <- read_xlsx(
+  here("paper_data/paper_data.xlsx"),   
+  sheet      = 1,               
+  col_types  = c(
+    "text",   # Title
+    "text",   # Authors
+    "numeric",# Year
+    "text",   # Journal
+    "text",   # Link
+    "text",    # Tags
+    "text"    # Notes
+  )
+)
+
+```
+
+```{r splitTagsColumn, echo=FALSE}
+bib_tbl <- bib_tbl %>%
+  mutate(
+    tag_list = str_split(Tags, "\\s*,\\s*") %>%        
+      map(~ .x %>%
+            str_squish() %>%                           
+            str_to_lower() %>%                         
+            discard(~ .x == ""))                       
+  )
+
+
+```
+
+```{r writeData, echo=FALSE}
+jsonlite::write_json(bib_tbl, "docs/bib-data.json", auto_unbox = TRUE)
+```
+
+```{r, results='asis', echo=FALSE, warning=FALSE}
+cat('
+<div class="bib-box">
+<div class="search-box">
+<input id="q-title" class="search-input" type="search"
+       placeholder="Search titles…" autocomplete="off" />
+</div>
+
+<select id="q-tags" multiple></select>
+</div>
+
+<table id="bib-table">
+<thead>
+<tr><th>Title</th><th>Authors</th><th>Year</th><th>Journal</th></tr>
+</thead>
+<tbody></tbody>
+</table>
+
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+
+<script>
+(async () => {
+  /* helpers & data */
+  const norm   = s => s.trim().toLowerCase();
+  const splitT = s => s.split(/\\s*,\\s*/).map(norm).filter(Boolean);
+  const rows   = await (await fetch("bib-data.json")).json();
+
+  /* build tag list + Choices.js */
+  const tagSel = document.getElementById("q-tags");
+  [...new Set(rows.flatMap(r => splitT(r.Tags)))].sort()
+      .forEach(t => tagSel.add(new Option(t, t)));
+
+  const tagChoices = new Choices(tagSel, {
+    removeItemButton: true,
+    placeholder: true,
+    placeholderValue: "Select tags…",
+    searchPlaceholderValue: "Type to search",
+    shouldSort: false
+  });
+
+  /* filter + render */
+  function matches(r, kw, tags) {
+    const kwOK  = !kw || r.Title.toLowerCase().includes(kw);
+    const tagOK = !tags.length || tags.every(t => splitT(r.Tags).includes(t));
+    return kwOK && tagOK;            // change every→some for “ANY” logic
+  }
+
+  const tbody = document.querySelector("#bib-table tbody");
+  function render(data) {
+    tbody.innerHTML = "";
+    data.forEach(r => {
+      tbody.insertAdjacentHTML("beforeend", `
+<tr>
+  <td>${r.Title}</td>
+  <td>${r.Authors}</td>
+  <td>${r.Year}</td>
+  <td>${r.Publication}</td>
+</tr>`);
+    });
+  }
+
+  /* unified refresh */
+  function refresh() {
+    const kw   = norm(document.getElementById("q-title").value);
+    const tags = tagChoices.getValue(true);
+    render(rows.filter(r => matches(r, kw, tags)));
+  }
+
+  /* live listeners */
+  document.getElementById("q-title").addEventListener("input",  refresh);
+  tagSel.addEventListener("change", refresh);
+
+  /* first paint */
+  render(rows);
+})();
+</script>
+')
+```
+
+
+
+
+
+
+
+
+
+
+
+
+

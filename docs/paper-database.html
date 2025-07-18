@@ -28,7 +28,7 @@ The HTML output format for this example is bookdown::gitbook,</p>" />
 
 
 
-<meta name="date" content="2025-07-15" />
+<meta name="date" content="2025-07-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -181,7 +181,92 @@ div.csl-indent {
 <div id="database" class="section level2 unnumbered hasAnchor">
 <h2>Database<a href="paper-database.html#database" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In this section, the group has amassed a database of papers that you can search by topic, title, and so on.</p>
-<embed src="https://docs.google.com/spreadsheets/d/1DYynE1zpp9CFRdecJ0QlDxr2tZ8nylmopeWltoxYz4o/edit?gid=0#gid=0" style="width:1500px; height: 750px;">
+<div class="bib-box">
+<div class="search-box">
+<p><input id="q-title" class="search-input" type="search"
+       placeholder="Search titles…" autocomplete="off" /></p>
+</div>
+<p><select id="q-tags" multiple></select></p>
+</div>
+<table id="bib-table">
+<thead>
+<tr>
+<th>
+Title
+</th>
+<th>
+Authors
+</th>
+<th>
+Year
+</th>
+<th>
+Journal
+</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+<script>
+(async () => {
+  /* helpers & data */
+  const norm   = s => s.trim().toLowerCase();
+  const splitT = s => s.split(/\s*,\s*/).map(norm).filter(Boolean);
+  const rows   = await (await fetch("bib-data.json")).json();
+
+  /* build tag list + Choices.js */
+  const tagSel = document.getElementById("q-tags");
+  [...new Set(rows.flatMap(r => splitT(r.Tags)))].sort()
+      .forEach(t => tagSel.add(new Option(t, t)));
+
+  const tagChoices = new Choices(tagSel, {
+    removeItemButton: true,
+    placeholder: true,
+    placeholderValue: "Select tags…",
+    searchPlaceholderValue: "Type to search",
+    shouldSort: false
+  });
+
+  /* filter + render */
+  function matches(r, kw, tags) {
+    const kwOK  = !kw || r.Title.toLowerCase().includes(kw);
+    const tagOK = !tags.length || tags.every(t => splitT(r.Tags).includes(t));
+    return kwOK && tagOK;            // change every→some for “ANY” logic
+  }
+
+  const tbody = document.querySelector("#bib-table tbody");
+  function render(data) {
+    tbody.innerHTML = "";
+    data.forEach(r => {
+      tbody.insertAdjacentHTML("beforeend", `
+<tr>
+  <td>${r.Title}</td>
+  <td>${r.Authors}</td>
+  <td>${r.Year}</td>
+  <td>${r.Publication}</td>
+</tr>`);
+    });
+  }
+
+  /* unified refresh */
+  function refresh() {
+    const kw   = norm(document.getElementById("q-title").value);
+    const tags = tagChoices.getValue(true);
+    render(rows.filter(r => matches(r, kw, tags)));
+  }
+
+  /* live listeners */
+  document.getElementById("q-title").addEventListener("input",  refresh);
+  tagSel.addEventListener("change", refresh);
+
+  /* first paint */
+  render(rows);
+})();
+</script>
 
 </div>
 </div>
